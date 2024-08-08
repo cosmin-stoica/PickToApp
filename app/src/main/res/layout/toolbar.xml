@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@null"
+    android:elevation="4dp"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
+    android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+    <!-- Immagine a sinistra -->
+    <ImageView
+        android:id="@+id/left_logo"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:contentDescription="Logo"
+        android:src="@drawable/logo"
+        android:layout_gravity="start|center_vertical" />
+
+    <!-- LinearLayout per i pulsanti a destra -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <!-- Pulsante 1 -->
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/primarylight"
+            android:text="Impostazioni"
+            android:textColor="@android:color/white" />
+
+        <!-- Pulsante 2 -->
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/primarylight"
+            android:text="Notifiche"
+            android:textColor="@android:color/white" />
+
+        <!-- Pulsante 3 -->
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primarylight"
+            android:text="Account"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+</androidx.appcompat.widget.Toolbar>

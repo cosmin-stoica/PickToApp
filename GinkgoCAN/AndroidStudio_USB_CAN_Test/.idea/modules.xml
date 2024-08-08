@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AndroidStudio_USB_CAN_Test.iml" filepath="$PROJECT_DIR$/AndroidStudio_USB_CAN_Test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AndroidStudio_USB_CAN_Test.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AndroidStudio_USB_CAN_Test.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AndroidStudio_USB_CAN_Test.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AndroidStudio_USB_CAN_Test.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AndroidStudio_USB_CAN_Test.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AndroidStudio_USB_CAN_Test.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AndroidStudio_USB_CAN_Test.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AndroidStudio_USB_CAN_Test.app.unitTest.iml" />
+    </modules>
+  </component>
+</project>

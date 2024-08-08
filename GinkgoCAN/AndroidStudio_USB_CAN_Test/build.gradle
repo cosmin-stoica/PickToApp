@@ -1,0 +1,18 @@
+buildscript {
+    repositories {
+        google() // Add this line
+        mavenCentral() // Ensure this line is also present
+        // Remove jcenter() as it is deprecated
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.0.0' // Use a compatible version
+    }
+}
+
+allprojects {
+    repositories {
+        google() // Add this line
+        mavenCentral() // Ensure this line is also present
+        // Remove jcenter() as it is deprecated
+    }
+}

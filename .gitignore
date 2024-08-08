@@ -1,0 +1,51 @@
+# Gradle files
+.gradle/
+build/
+**/build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/**/build/
+
+# Local configuration files (e.g., settings specific to your development environment)
+.idea/caches/
+.idea/libraries/
+.idea/.name
+.idea/workspace.xml
+.idea/gradle.xml
+.idea/assetWizardSettings.xml
+.idea/dictionaries
+.idea/modules.xml
+.idea/codeStyles/
+
+# Keystore files (avoid committing sensitive data like keystores)
+*.jks
+*.keystore
+
+# File di log
+*.log
+
+# Android Studio generated files and folders
+captures/
+.externalNativeBuild/
+.cxx/
+
+# NDK
+obj/
+
+# File di configurazione specifici del sistema operativo
+.DS_Store
+Thumbs.db
+
+# File di configurazione di sistema e IDE
+local.properties
+*.iml
+
+# Specific for IntelliJ IDEA
+*.iws
+*.ipr
+
+# macOS
+*.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
