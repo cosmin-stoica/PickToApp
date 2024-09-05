@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center">
+
+
+    <!-- ImageView sopra al layout -->
+    <ImageView
+        android:id="@+id/warningIcon"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:translationY="0dp"
+        android:src="@drawable/warning_icon"
+        android:contentDescription="Icona di successo"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Titolo del Warning -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Warning"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- Messaggio del Warning -->
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Questo è un messaggio di avvertimento." />
+
+    <!-- Bottone OK -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnConfirm"
+        android:textAllCaps="false"
+        android:layout_marginTop="10dp"
+        android:layout_height="30dp"
+        android:layout_width="80dp"
+        android:layout_weight="1"
+        android:text="Ok"
+        android:textColor="@color/indietro_color"
+        android:background="@color/dialog_background"/>
+</LinearLayout>

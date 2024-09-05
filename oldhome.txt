@@ -1,0 +1,104 @@
+
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
+import com.example.picktolightapp.CAN.CANDriver;
+import com.example.picktolightapp.COM.COMDriver;
+import com.example.picktolightapp.MainActivity;
+import com.example.picktolightapp.R;
+
+public class HomepageFragment extends Fragment {
+
+    //private CANDriver canDriver;
+    //private COMDriver comDriver;
+    private static final String TAG = "HomepageFragment";
+    ImageButton utentiButton;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.homepage, container, false);
+        utentiButton = view.findViewById(R.id.utentiButton);
+
+        utentiButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_to_settingsFragment);
+                MainActivity.setLogoVisible();
+            }
+        });
+
+        /*Button provaCanButton = view.findViewById(R.id.ProvaCanButton);
+        Button provaComButton = view.findViewById(R.id.ProvaCOMButton);
+        canDriver = new CANDriver(requireContext());
+        comDriver = new COMDriver(requireContext());*/
+
+        /*provaCanButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onProvaCanButtonClick();
+            }
+        });
+        provaComButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onProvaComButtonClick();
+            }
+        });*/
+
+        return view;
+    }
+
+    /*private void onProvaComButtonClick() {
+        comDriver.openDevice(getContext());
+        comDriver.sendString("provaAPP");
+    }
+
+    /*private void onProvaCanButtonClick() {
+        if (!canDriver.openConnection()) {
+            Log.w(TAG, "Failed to open connection to CAN device.");
+            return;
+        }
+
+        // Step 3: Initialize CAN
+        if (!canDriver.initCAN()) {
+            Log.w(TAG, "Failed to initialize CAN.");
+            return;
+        }
+
+        // Step 4: Set CAN filter
+        if (!canDriver.setFilter()) {
+            Log.w(TAG, "Failed to set CAN filter.");
+            return;
+        }
+
+        // Step 5: Start CAN communication
+        if (!canDriver.startCAN()) {
+            Log.w(TAG, "Failed to start CAN communication.");
+            return;
+        }
+
+        // Step 6: Send data
+        if (!canDriver.sendData()) {
+            Log.w(TAG, "Failed to send data over CAN.");
+        }
+
+        // Step 7: Receive data
+        //canDriver.receiveData();
+
+        // Step 8: Close the connection
+        canDriver.closeConnection();
+    }*/
+}

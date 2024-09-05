@@ -1,0 +1,219 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgrounddark"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editTextIp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:hint="Inserisci IP"
+        android:inputType="text"
+        android:singleLine="true"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#CCCCCC" />
+
+    <EditText
+        android:id="@+id/editTextPort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:hint="Inserisci Porta"
+        android:inputType="number"
+        android:singleLine="true"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#CCCCCC" />
+
+    <EditText
+        android:id="@+id/editTextMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:hint="Inserisci Messaggio"
+        android:imeOptions="actionDone"
+        android:inputType="text"
+        android:singleLine="true"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#CCCCCC" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSendClientTCP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/white_button"
+        android:text="Invia"
+        android:textAllCaps="false"
+        android:textColor="@color/indietro_color" />
+
+    <!-- EditText per l'ID -->
+    <EditText
+        android:id="@+id/editTextId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:hint="Inserisci ID"
+        android:inputType="number"
+        android:singleLine="true"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#CCCCCC" />
+
+    <!-- LinearLayout per i pulsanti in orizzontale -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/white_button"
+            android:text="Status"
+            android:textAllCaps="false"
+            android:textColor="@color/indietro_color" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAbilita"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/white_button"
+            android:text="Abilita"
+            android:textAllCaps="false"
+            android:textColor="@color/indietro_color" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnDisabilita"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/white_button"
+            android:text="Disabilita"
+            android:textAllCaps="false"
+            android:textColor="@color/indietro_color" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAccendiLedSX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/white_button"
+            android:text="Accendi Led SX"
+            android:textAllCaps="false"
+            android:textColor="@color/indietro_color" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSpegniLedSX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/white_button"
+            android:text="Spegni Led SX"
+            android:textAllCaps="false"
+            android:textColor="@color/indietro_color" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAccendiLedDX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/white_button"
+            android:text="Accendi Led DX"
+            android:textAllCaps="false"
+            android:textColor="@color/indietro_color" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSpegniLedDX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/white_button"
+            android:text="Spegni Led DX"
+            android:textAllCaps="false"
+            android:textColor="@color/indietro_color" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnStatusLoop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_button"
+            android:text="Status Loop"
+            android:textAllCaps="false"
+            android:textColor="@color/indietro_color" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewRicezione"
+        android:layout_width="600px"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="10px"
+        android:text="In ricezione..." />
+
+
+    <LinearLayout
+        android:id="@+id/fakeDispositivo"
+        android:layout_width="442dp"
+        android:layout_height="220dp"
+        android:padding="10dp"
+        android:background="@drawable/fakedispositivonormal"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/dispositivoID"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@drawable/fakedispositivonormal"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="1"
+            android:textAlignment="center"
+            android:textColor="@color/black" />
+
+        <com.example.picktolightapp.Settings.GestioneDispositivi.TestTCPIP.CircleView
+            android:id="@+id/circleView"
+            android:layout_width="match_parent"
+            android:layout_height="70dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnButtonSX"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/white_button"
+                android:text="Button SX"
+                android:textAllCaps="false"
+                android:textColor="@color/indietro_color" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnButtonDX"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_button"
+                android:text="Button DX"
+                android:textAllCaps="false"
+                android:textColor="@color/indietro_color" />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

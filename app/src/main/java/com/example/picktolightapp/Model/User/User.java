@@ -4,23 +4,17 @@ import androidx.annotation.NonNull;
 
 public class User {
 
-    private static User instance;
     private String username;
     private String password;
+    private TipoUser tipo;
 
     public User(){
     }
 
-    private User(String username, String password){
+    public User(TipoUser tipo, String username, String password){
+        this.tipo = tipo;
         this.username = username;
         this.password = password;
-    }
-
-    public static synchronized User getInstance() {
-        if (instance == null) {
-            instance = new User();
-        }
-        return instance;
     }
 
     public void setPassword(String password) {
@@ -31,12 +25,20 @@ public class User {
         this.username = username;
     }
 
+    public void setTipo(TipoUser tipo) {
+        this.tipo = tipo;
+    }
+
     public String getPassword() {
         return password;
     }
 
     public String getUsername() {
         return username;
+    }
+
+    public TipoUser getTipo() {
+        return tipo;
     }
 
     @NonNull

@@ -1,21 +1,93 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroundlight">
+    android:background="@drawable/backgroundlight"
+    tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView2"
+    <GridLayout
+        android:id="@+id/gridLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/homepage"
-        android:textColor="@android:color/white"
+        android:layout_margin="16dp"
+        android:columnCount="3"
+        android:rowCount="2"
+        android:layout_gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <ImageButton
+            android:id="@+id/avvioButton"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/avvio"
+            android:background="@android:color/transparent"
+            android:contentDescription="Image 1"
+            android:stateListAnimator="@animator/home_button_press_animation" />
+
+        <ImageButton
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/live"
+            android:background="@android:color/transparent"
+            android:contentDescription="Image 2"
+            android:stateListAnimator="@animator/home_button_press_animation" />
+
+        <ImageButton
+            android:id="@+id/utentiButton"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/utenti"
+            android:background="@android:color/transparent"
+            android:contentDescription="Image 3"
+            android:stateListAnimator="@animator/home_button_press_animation" />
+
+        <ImageButton
+            android:id="@+id/dispositiviButton"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/dispositivi"
+            android:background="@android:color/transparent"
+            android:contentDescription="Image 4"
+            android:stateListAnimator="@animator/home_button_press_animation" />
+
+        <ImageButton
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/componenti"
+            android:background="@android:color/transparent"
+            android:contentDescription="Image 5"
+            android:stateListAnimator="@animator/home_button_press_animation" />
+
+        <ImageButton
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/ricette"
+            android:background="@android:color/transparent"
+            android:contentDescription="Image 6"
+            android:stateListAnimator="@animator/home_button_press_animation" />
+
+    </GridLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

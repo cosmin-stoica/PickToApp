@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:gravity="center"
+    android:background="@android:color/transparent">
+
+    <!-- ImageView sopra al layout -->
+    <ImageView
+        android:id="@+id/successIcon"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:translationY="0dp"
+        android:src="@drawable/success_icon"
+        android:contentDescription="Icona di successo"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginBottom="8dp" />
+
+    <!-- LinearLayout per contenere il titolo, il messaggio e il bottone -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="35dp"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:background="@android:color/transparent">
+
+    <!-- Titolo del Warning -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Success!"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- Messaggio del Warning -->
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Questo è un messaggio di successo." />
+
+    <!-- Bottone OK -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnConfirm"
+        android:textAllCaps="false"
+        android:layout_marginTop="10dp"
+        android:layout_height="30dp"
+        android:layout_width="80dp"
+        android:text="Ok"
+        android:textColor="@color/indietro_color"
+        android:background="@color/dialog_background" />
+</LinearLayout>
+    </FrameLayout>

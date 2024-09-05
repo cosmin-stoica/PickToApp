@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
@@ -10,52 +11,90 @@
     android:paddingEnd="8dp"
     android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
-    <!-- Immagine a sinistra -->
-    <ImageView
-        android:id="@+id/left_logo"
-        android:layout_width="50dp"
-        android:layout_height="match_parent"
-        android:contentDescription="Logo"
-        android:src="@drawable/logo"
-        android:layout_gravity="start|center_vertical" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <!-- LinearLayout per i pulsanti a destra -->
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="end"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        <!-- Immagine (Logo) -->
+        <ImageView
+            android:id="@+id/left_logo"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:contentDescription="Logo"
+            android:src="@drawable/logo"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-        <!-- Pulsante 1 -->
-        <Button
-            android:id="@+id/button1"
+        <!-- Pulsante "Indietro" -->
+        <LinearLayout
+            android:id="@+id/back_button_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:backgroundTint="@color/primarylight"
-            android:text="Impostazioni"
-            android:textColor="@android:color/white" />
+            android:orientation="horizontal"
+            android:visibility="invisible"
+            app:layout_constraintStart_toEndOf="@id/left_logo"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-        <!-- Pulsante 2 -->
-        <Button
-            android:id="@+id/button2"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/back_arrow"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="&lt;"
+                android:textColor="@color/indietro_color"
+                android:textSize="28sp" />
+
+            <TextView
+                android:id="@+id/back_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Indietro"
+                android:textColor="@color/indietro_color"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <!-- Pulsanti a destra -->
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:backgroundTint="@color/primarylight"
-            android:text="Notifiche"
-            android:textColor="@android:color/white" />
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-        <!-- Pulsante 3 -->
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/primarylight"
-            android:text="Account"
-            android:textColor="@android:color/white" />
+            <ImageButton
+                android:id="@+id/settingsBtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/icon_settings"
+                android:layout_marginEnd="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="centerInside" />
 
-    </LinearLayout>
+            <ImageButton
+                android:id="@+id/notificheBtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/icon_bell"
+                android:layout_marginEnd="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="centerInside" />
 
+            <TextView
+                android:id="@+id/accountBtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/white_circle"
+                android:gravity="center"
+                android:text="N"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.appcompat.widget.Toolbar>

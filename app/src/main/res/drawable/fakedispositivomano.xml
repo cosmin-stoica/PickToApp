@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Arrotonda i bordi -->
+    <corners android:radius="16dp" />
+
+    <!-- Definisce il colore di sfondo con trasparenza -->
+    <solid android:color="#80edff85" /> <!-- Colore bianco (#FFFFFF) con trasparenza (50% trasparente) -->
+</shape>

@@ -2,5 +2,19 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="primarylight">#5A0AAA</color>
+    <color name="violet">#80662091</color>
+    <color name="gray">#d4d4d4</color>
+    <color name="gray_dark">#757575</color>
+    <color name="gray_darker">#d4d4d4</color>
+    <color name="primarylight">#424242</color>
+    <color name="settings_normal_background">#303030</color>
+    <color name="settings_pressed_background">#505050</color>
+    <color name="debug_color">#B0B0BEC5</color>
+    <color name="info_color">#B081D4FA</color>
+    <color name="warning_color">#B0FFCC80</color>
+    <color name="error_color">#B0FF8A80</color>
+    <color name="server_color">#B036E350</color>
+    <color name="indietro_color">#007AFF</color>
+    <color name="dialog_background">#ebebeb</color>
+    <color name="dialog_success_background">#86e86b</color>
 </resources>

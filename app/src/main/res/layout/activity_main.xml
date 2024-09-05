@@ -25,4 +25,9 @@
         app:navGraph="@navigation/nav_graph"
         app:defaultNavHost="true" />
 
+    <!-- FrameLayout for loading overlay -->
+    <FrameLayout android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

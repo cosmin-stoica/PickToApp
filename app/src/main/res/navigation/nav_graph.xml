@@ -4,6 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/loginFragment">
 
+    <action
+        android:id="@+id/action_to_settingsFragment"
+        app:destination="@id/settingsFragment" />
+
+    <action
+        android:id="@+id/action_to_UserPageFragment"
+        app:destination="@id/userPageFragment" />
+
+    <action
+        android:id="@+id/action_to_homepageFragment"
+        app:destination="@id/homepageFragment" />
+
+    <action
+        android:id="@+id/action_to_GestioneUtentiFragment"
+        app:destination="@id/gestioneUtentiFragment" />
+
+
+    <action
+        android:id="@+id/action_to_LoginFragment"
+        app:destination="@id/loginFragment" />
+
+    <action
+        android:id="@+id/action_to_DispositiviHomeFragment"
+        app:destination="@id/DispositiviHomeFragment" />
+
+
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.picktolightapp.Login.LoginFragment"
@@ -19,4 +45,80 @@
         android:name="com.example.picktolightapp.Homepage.HomepageFragment"
         android:label="Homepage"
         tools:layout="@layout/homepage" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.picktolightapp.Settings.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/settings">
+        <action
+            android:id="@+id/action_settingsFragment_to_logFragment"
+            app:destination="@id/logFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_gestioneUtentiFragment"
+            app:destination="@id/gestioneUtentiFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_creaUtenteFragment"
+            app:destination="@id/creaUtenteFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_TCPIPFragment"
+            app:destination="@id/TCPIPFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_ConfigurazioneReteFragment"
+            app:destination="@id/ConfigurazioneReteFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/logFragment"
+        android:name="com.example.picktolightapp.Settings.Log.LogFragment"
+        android:label="Log"
+        tools:layout="@layout/log" />
+
+    <fragment
+        android:id="@+id/gestioneUtentiFragment"
+        android:name="com.example.picktolightapp.Settings.GestioneUtenti.GestioneUtentiFragment"
+        android:label="Log"
+        tools:layout="@layout/gestione_utenti" />
+
+    <fragment
+        android:id="@+id/creaUtenteFragment"
+        android:name="com.example.picktolightapp.Settings.GestioneUtenti.CreaUtente.CreaUtenteFragment"
+        android:label="Log"
+        tools:layout="@layout/crea_utente" />
+
+    <fragment
+        android:id="@+id/userPageFragment"
+        android:name="com.example.picktolightapp.UserPage.UserPageFragment"
+        android:label="UserPage Fragment"
+        tools:layout="@layout/userpage" />
+
+    <fragment
+        android:id="@+id/TCPIPFragment"
+        android:name="com.example.picktolightapp.Settings.GestioneDispositivi.TestTCPIP.TestTCPIPFragment"
+        android:label="Gestione Dispositivi Fragment"
+        tools:layout="@layout/tcpip" />
+
+    <fragment
+        android:id="@+id/DispositiviHomeFragment"
+        android:name="com.example.picktolightapp.DispositiviHome.DispositiviHomeFragment"
+        android:label="Dispositivi Home Fragment"
+        tools:layout="@layout/dispositivi_home">
+        <action
+            android:id="@+id/action_DispositiviHomeFragment_to_DispositivoVisualizeFragment"
+            app:destination="@id/DispositivoVisualizeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ConfigurazioneReteFragment"
+        android:name="com.example.picktolightapp.Settings.GestioneDispositivi.ConfigurazioneRete.ConfigurazioneReteFragment"
+        android:label="Configurazione Rete Fragment"
+        tools:layout="@layout/configurazione_rete" />
+
+    <fragment
+        android:id="@+id/DispositivoVisualizeFragment"
+        android:name="com.example.picktolightapp.DispositiviHome.DispositivoVisualizeFragment"
+        android:label="Dispositivo Visualize Fragment"
+        tools:layout="@layout/dispositivo_visualize" />
+
+
 </navigation>
