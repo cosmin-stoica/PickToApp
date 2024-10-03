@@ -1,11 +1,10 @@
 package com.example.picktolightapp.UserPage;
 
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,11 +22,11 @@ import com.example.picktolightapp.DialogsHandler;
 import com.example.picktolightapp.GlobalVariables;
 import com.example.picktolightapp.Login.HandleAccount;
 import com.example.picktolightapp.MainActivity;
-import com.example.picktolightapp.Model.Operation.Operation;
-import com.example.picktolightapp.Model.PermissionOperationsTable;
-import com.example.picktolightapp.Model.User.CurrentUser;
-import com.example.picktolightapp.Model.User.User;
-import com.example.picktolightapp.Model.User.UserTable;
+import com.example.picktolightapp.Model_DB.Operation.Operation;
+import com.example.picktolightapp.Model_DB.PermissionOperations.PermissionOperationsTable;
+import com.example.picktolightapp.Model_DB.User.CurrentUser;
+import com.example.picktolightapp.Model_DB.User.User;
+import com.example.picktolightapp.Model_DB.User.UserTable;
 import com.example.picktolightapp.R;
 
 public class UserPageFragment extends Fragment {
@@ -87,6 +86,7 @@ public class UserPageFragment extends Fragment {
                         getLayoutInflater(),
                         "Modifica Username",
                         "Inserisci il nuovo username",
+                        InputType.TYPE_CLASS_TEXT,
                         new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -139,6 +139,7 @@ public class UserPageFragment extends Fragment {
                         getLayoutInflater(),
                         "Modifica Password",
                         "Inserisci una nuova password",
+                        InputType.TYPE_CLASS_TEXT,
                         new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {

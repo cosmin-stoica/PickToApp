@@ -2,8 +2,8 @@ package com.example.picktolightapp.Connectivity;
 
 import android.content.Context;
 
-import com.example.picktolightapp.Model.Event.EventWriter;
-import com.example.picktolightapp.Model.Event.TipoEvento;
+import com.example.picktolightapp.Model_DB.Event.EventWriter;
+import com.example.picktolightapp.Model_DB.Event.TipoEvento;
 
 import java.io.IOException;
 import java.io.PrintWriter;

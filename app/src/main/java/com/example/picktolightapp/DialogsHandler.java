@@ -3,6 +3,7 @@ package com.example.picktolightapp;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -132,7 +133,7 @@ public class DialogsHandler {
     }
 
 
-    public static void showChangeValueDialog(Context context, LayoutInflater inflater, String titleText, String editPrev,
+    public static void showChangeValueDialog(Context context, LayoutInflater inflater, String titleText, String editPrev, int inputType,
                                              View.OnClickListener saveListener, View.OnClickListener cancelListener) {
         // Crea il dialog
         View dialogView = inflater.inflate(R.layout.changevalue, null);
@@ -148,6 +149,7 @@ public class DialogsHandler {
         // Imposta il titolo e il suggerimento del campo di input
         title.setText(titleText);
         editTextInput.setHint(editPrev);
+        editTextInput.setInputType(inputType);
 
         // Crea il dialogo
         AlertDialog dialog = builder.create();
@@ -189,6 +191,7 @@ public class DialogsHandler {
         dialog.show();
         dialog.getWindow().setLayout(900, WindowManager.LayoutParams.WRAP_CONTENT);
     }
+
 
     public static void showSuccessDialog(Context context, LayoutInflater inflater, String title, String message,
                                          View.OnClickListener confirmListener) {

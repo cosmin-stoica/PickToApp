@@ -37,14 +37,22 @@ public class DispositiviHomeFragment extends Fragment {
         viewPager.setAdapter(adapter);
 
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
-            tab.setText("I tuoi dispositivi");
+            switch (position) {
+                case 0:
+                    tab.setText("I tuoi dispositivi");
+                    break;
+                case 1:
+                    tab.setText("Crea dispositivo");
+                    break;
+            }
 
+            // Imposta una vista personalizzata per ogni tab
             View customTab = LayoutInflater.from(getContext()).inflate(R.layout.custom_tab, null);
             TextView tabText = customTab.findViewById(R.id.tabText);
             tabText.setText(tab.getText());
-
             tab.setCustomView(customTab);
 
         }).attach();
+
     }
 }

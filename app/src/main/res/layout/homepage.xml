@@ -32,6 +32,7 @@
             android:stateListAnimator="@animator/home_button_press_animation" />
 
         <ImageButton
+            android:id="@+id/liveButton"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -67,6 +68,7 @@
             android:stateListAnimator="@animator/home_button_press_animation" />
 
         <ImageButton
+            android:id="@+id/componentiButton"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -78,6 +80,7 @@
             android:stateListAnimator="@animator/home_button_press_animation" />
 
         <ImageButton
+            android:id="@+id/ricetteButton"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"

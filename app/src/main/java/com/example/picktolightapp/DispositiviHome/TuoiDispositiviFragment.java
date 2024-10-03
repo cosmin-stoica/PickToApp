@@ -1,6 +1,5 @@
 package com.example.picktolightapp.DispositiviHome;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
 
@@ -10,18 +9,24 @@ import androidx.navigation.Navigation;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.picktolightapp.Connectivity.DispositiviHandler;
 import com.example.picktolightapp.Connectivity.SendMessageResult;
+import com.example.picktolightapp.Connectivity.Server;
 import com.example.picktolightapp.Connectivity.TcpClient;
 import com.example.picktolightapp.DialogsHandler;
 import com.example.picktolightapp.GlobalVariables;
-import com.example.picktolightapp.Model.Dispositivo.Dispositivo;
-import com.example.picktolightapp.Model.Dispositivo.DispositivoTable;
+import com.example.picktolightapp.Model_DB.Dispositivo.Dispositivo;
+import com.example.picktolightapp.Model_DB.Operation.Operation;
+import com.example.picktolightapp.Model_DB.PermissionOperations.PermissionOperationsTable;
+import com.example.picktolightapp.Model_DB.User.CurrentUser;
 import com.example.picktolightapp.R;
 
 import java.util.ArrayList;
@@ -35,7 +40,6 @@ public class TuoiDispositiviFragment extends Fragment {
 
     DispositivoAdapter dispositivoAdapter;
     ListView listView;
-    private AlertDialog loadingDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,7 +48,6 @@ public class TuoiDispositiviFragment extends Fragment {
         Button rilevaDispositivi = view.findViewById(R.id.btnRilevaDispositivi);
         listView = view.findViewById(R.id.listView);
 
-        List<Dispositivo> dispositivoList = new ArrayList<>();
 
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
 
@@ -54,69 +57,18 @@ public class TuoiDispositiviFragment extends Fragment {
         rilevaDispositivi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dispositivoList.clear();
 
-                //getDispositivibyServer();
+                if(!PermissionOperationsTable.userHasPermission(requireContext(), CurrentUser.getInstance(), Operation.DETECT_DISP,true)) {
+                    return;
+                }
 
-                dispositivoList.addAll(DispositivoTable.getAllDispositivi(requireContext()));
-                dispositivoList.add(new Dispositivo(0,0,0));
-                dispositivoList.add(new Dispositivo(1,1,1));
-                GlobalVariables.getInstance().setCurrentDispositivi(dispositivoList);
-                dispositivoAdapter.updateData(dispositivoList);
+                DispositiviHandler.getDispositiviRilevato(requireContext(),getLayoutInflater(),() -> {
+                    dispositivoAdapter.updateData(GlobalVariables.getInstance().getCurrentDispositivi());
+                    dispositivoAdapter.notifyDataSetChanged();
+                });
             }
         });
 
         return view;
     }
-
-    private void getDispositivibyServer() {
-        String ip = GlobalVariables.getInstance().getIP();
-        String port = GlobalVariables.getInstance().getPort();
-        int serverPort = Integer.parseInt(port);
-
-        TcpClient tcpClient = new TcpClient(requireContext(), ip, serverPort, "Status");
-
-        try {
-            Future<SendMessageResult> futureResult = tcpClient.sendMessage();
-            SendMessageResult result = futureResult.get(2, TimeUnit.SECONDS);
-
-            if (result.isSuccess()) {
-                // Show loading dialog and wait for 1.5 seconds
-                showLoadingDialog();
-
-                new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                    DialogsHandler.showSuccessDialog(requireContext(), getLayoutInflater(), "Successo", "Dispositivi rilevati con successo", null);
-                    hideLoadingDialog();
-                }, 1500);
-            } else {
-                // Show error dialog immediately
-                DialogsHandler.showErrorDialog(requireContext(), getLayoutInflater(), "Errore", "Messaggio rifiutato: " + result.getErrorMessage(), null);
-            }
-        } catch (InterruptedException | ExecutionException e) {
-            // Show error dialog immediately
-            DialogsHandler.showErrorDialog(requireContext(), getLayoutInflater(), "Errore", "Errore durante l'invio del messaggio: " + e.getMessage(), null);
-        } catch (TimeoutException e) {
-            // Show error dialog immediately
-            DialogsHandler.showErrorDialog(requireContext(), getLayoutInflater(), "Errore", "Errore durante l'invio del messaggio: TIMEOUT", null);
-        }
-    }
-
-    // Method to show loading dialog
-    private void showLoadingDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-        LayoutInflater inflater = getLayoutInflater();
-        View loadingView = inflater.inflate(R.layout.loading, null);
-        builder.setView(loadingView);
-        builder.setCancelable(false); // Prevent the user from dismissing the dialog
-        loadingDialog = builder.create();
-        loadingDialog.show();
-    }
-
-    // Method to hide loading dialog
-    private void hideLoadingDialog() {
-        if (loadingDialog != null && loadingDialog.isShowing()) {
-            loadingDialog.dismiss();
-        }
-    }
-
 }

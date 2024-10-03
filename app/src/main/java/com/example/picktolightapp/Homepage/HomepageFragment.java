@@ -2,6 +2,8 @@ package com.example.picktolightapp.Homepage;
 
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +21,9 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.picktolightapp.CAN.CANDriver;
 import com.example.picktolightapp.COM.COMDriver;
 import com.example.picktolightapp.MainActivity;
+import com.example.picktolightapp.Model_DB.Operation.Operation;
+import com.example.picktolightapp.Model_DB.PermissionOperations.PermissionOperationsTable;
+import com.example.picktolightapp.Model_DB.User.CurrentUser;
 import com.example.picktolightapp.R;
 
 public class HomepageFragment extends Fragment {
@@ -26,7 +31,7 @@ public class HomepageFragment extends Fragment {
     //private CANDriver canDriver;
     //private COMDriver comDriver;
     private static final String TAG = "HomepageFragment";
-    ImageButton utentiButton,dispositiviButton;
+    ImageButton utentiButton,dispositiviButton,componenteButton,liveButton,avvioButton,ricetteButton;
 
     @Nullable
     @Override
@@ -35,6 +40,10 @@ public class HomepageFragment extends Fragment {
         View view = inflater.inflate(R.layout.homepage, container, false);
         utentiButton = view.findViewById(R.id.utentiButton);
         dispositiviButton = view.findViewById(R.id.dispositiviButton);
+        componenteButton = view.findViewById(R.id.componentiButton);
+        liveButton = view.findViewById(R.id.liveButton);
+        avvioButton = view.findViewById(R.id.avvioButton);
+        ricetteButton = view.findViewById(R.id.ricetteButton);
 
         NavController navController = NavHostFragment.findNavController(this);
 
@@ -49,8 +58,86 @@ public class HomepageFragment extends Fragment {
         dispositiviButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.action_to_DispositiviHomeFragment);
-                MainActivity.setLogoVisible();
+
+                if(!PermissionOperationsTable.userHasPermission(requireContext(), CurrentUser.getInstance(), Operation.VIEW_DISP,true)) {
+                    return;
+                }
+
+                MainActivity.showLoader();
+
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        navController.navigate(R.id.action_to_DispositiviHomeFragment);
+                    }
+                }, 1000);
+            }
+        });
+
+        componenteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(!PermissionOperationsTable.userHasPermission(requireContext(), CurrentUser.getInstance(), Operation.VIEW_COMP,true)) {
+                    return;
+                }
+
+                MainActivity.showLoader();
+
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        navController.navigate(R.id.action_to_ComponenteHomeFragment);
+                    }
+                }, 600);
+            }
+        });
+
+
+        liveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(!PermissionOperationsTable.userHasPermission(requireContext(), CurrentUser.getInstance(), Operation.VIEW_LIVE,true)) {
+                    return;
+                }
+
+                MainActivity.showLoader();
+
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        navController.navigate(R.id.action_to_LiveFragment);
+                    }
+                }, 600);
+            }
+        });
+
+        avvioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(!PermissionOperationsTable.userHasPermission(requireContext(), CurrentUser.getInstance(), Operation.START_WORK,true)) {
+                    return;
+                }
+
+                MainActivity.showLoader();
+
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        navController.navigate(R.id.action_HomepageFragment_to_LavorazioneFragment);
+                    }
+                }, 400);
+            }
+        });
+
+        ricetteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!PermissionOperationsTable.userHasPermission(requireContext(), CurrentUser.getInstance(), Operation.START_WORK,true)) {
+                    return;
+                }
             }
         });
 

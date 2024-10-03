@@ -17,13 +17,13 @@ import androidx.fragment.app.Fragment;
 
 import com.example.picktolightapp.DialogsHandler;
 import com.example.picktolightapp.MainActivity;
-import com.example.picktolightapp.Model.Event.EventWriter;
-import com.example.picktolightapp.Model.Event.TipoEvento;
-import com.example.picktolightapp.Model.Operation.Operation;
-import com.example.picktolightapp.Model.PermissionOperationsTable;
-import com.example.picktolightapp.Model.User.CurrentUser;
-import com.example.picktolightapp.Model.User.TipoUser;
-import com.example.picktolightapp.Model.User.UserTable;
+import com.example.picktolightapp.Model_DB.Event.EventWriter;
+import com.example.picktolightapp.Model_DB.Event.TipoEvento;
+import com.example.picktolightapp.Model_DB.Operation.Operation;
+import com.example.picktolightapp.Model_DB.PermissionOperations.PermissionOperationsTable;
+import com.example.picktolightapp.Model_DB.User.CurrentUser;
+import com.example.picktolightapp.Model_DB.User.TipoUser;
+import com.example.picktolightapp.Model_DB.User.UserTable;
 import com.example.picktolightapp.R;
 
 public class CreaUtenteFragment extends Fragment {

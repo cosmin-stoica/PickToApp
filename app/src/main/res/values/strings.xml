@@ -9,7 +9,8 @@
     <string name="elimina_log">Elimina log</string>
     <string name="welcome">Welcome</string>
         <string-array name="settings_options">
-            <item>Visualizza Log</item>
+            <item>Visualizza Log Generale</item>
+            <item>Visualizza Log Dispositivi</item>
             <item>Gestione utenti</item>
             <item>Gestione dispositivi</item>
         </string-array>

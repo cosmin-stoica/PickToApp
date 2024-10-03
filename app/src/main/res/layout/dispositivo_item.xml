@@ -39,15 +39,42 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/eliminaDispo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/red_button"
+            android:text="Elimina"
+            android:textAllCaps="false"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/rilevaDispo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_button"
+            android:text="Rileva"
+            android:textAllCaps="false"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/indietro_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/visualizeDispo"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/visualizeDispo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/white_button"
             android:text="Visualizza"
             android:textAllCaps="false"
+            android:layout_marginRight="10dp"
             android:textColor="@color/indietro_color"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/eliminaDispo"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -47,4 +47,7 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(files("libs/ginkgo_driver.jar"))
     implementation(files("libs/d2xx.jar"))
+    implementation(libs.picasso)
+    implementation (libs.zxing.android.embedded)
+    implementation (libs.core)
 }

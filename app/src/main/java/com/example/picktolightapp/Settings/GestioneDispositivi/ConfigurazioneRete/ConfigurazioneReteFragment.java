@@ -11,26 +11,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.picktolightapp.Connectivity.SendMessageResult;
-import com.example.picktolightapp.Connectivity.TcpClient;
 import com.example.picktolightapp.DialogsHandler;
 import com.example.picktolightapp.GlobalVariables;
 import com.example.picktolightapp.MainActivity;
-import com.example.picktolightapp.Model.Global.GlobalTable;
+import com.example.picktolightapp.Model_DB.Global.GlobalTable;
 import com.example.picktolightapp.R;
-
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class ConfigurazioneReteFragment extends Fragment {
 
-    EditText editTextIP;
-    EditText editTextPort;
+    TextInputEditText editTextPort, editTextIP;
     public ConfigurazioneReteFragment() {
     }
 
@@ -47,7 +39,7 @@ public class ConfigurazioneReteFragment extends Fragment {
         String oldPort = GlobalVariables.getInstance().getPort();
 
         TextView currentIP = view.findViewById(R.id.currentIP);
-        currentIP.setText("Indirizzo IP del dispositivo: " + getIP(requireContext()));
+        currentIP.setText(getIP(requireContext()));
 
 
         editTextIP = view.findViewById(R.id.editTextIP);

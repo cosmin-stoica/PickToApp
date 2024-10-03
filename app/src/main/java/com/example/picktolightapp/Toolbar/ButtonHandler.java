@@ -1,12 +1,9 @@
 package com.example.picktolightapp.Toolbar;
 
 import android.app.Activity;
-import android.media.Image;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,17 +11,11 @@ import android.widget.TextView;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.picktolightapp.DialogsHandler;
 import com.example.picktolightapp.GlobalVariables;
 import com.example.picktolightapp.MainActivity;
-import com.example.picktolightapp.Model.Operation.Operation;
-import com.example.picktolightapp.Model.PermissionOperationsTable;
-import com.example.picktolightapp.Model.User.CurrentUser;
+import com.example.picktolightapp.Model_DB.User.CurrentUser;
 import com.example.picktolightapp.R;
-
-import org.w3c.dom.Text;
 
 public class ButtonHandler {
 
@@ -54,7 +45,7 @@ public class ButtonHandler {
                         NavController navController = Navigation.findNavController(activity, R.id.nav_host_fragment);
                         navController.navigate(R.id.action_to_settingsFragment);
                     }
-                }, 200);
+                }, 400);
             }
         });
 
@@ -97,6 +88,8 @@ public class ButtonHandler {
 
                 navController.navigate(GlobalVariables.getInstance().getLastDestinationId());
                 MainActivity.setLogoVisible();
+                GlobalVariables.getInstance().setbSeeDispositivoLog(false);
+                GlobalVariables.getInstance().setDispositivoIDToSeeLog(-1);
             }
         });
     }

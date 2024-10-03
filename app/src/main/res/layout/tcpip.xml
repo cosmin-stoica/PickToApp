@@ -7,32 +7,10 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/editTextIp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:hint="Inserisci IP"
-        android:inputType="text"
-        android:singleLine="true"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#CCCCCC" />
-
-    <EditText
-        android:id="@+id/editTextPort"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:hint="Inserisci Porta"
-        android:inputType="number"
-        android:singleLine="true"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#CCCCCC" />
-
-    <EditText
         android:id="@+id/editTextMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="10dp"
         android:hint="Inserisci Messaggio"
         android:imeOptions="actionDone"
         android:inputType="text"
@@ -45,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/white_button"
         android:text="Invia"
         android:textAllCaps="false"
@@ -58,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:hint="Inserisci ID"
+        android:imeOptions="actionDone"
         android:inputType="number"
         android:singleLine="true"
         android:textColor="#FFFFFF"
@@ -154,9 +133,10 @@
     <TextView
         android:id="@+id/textViewRicezione"
         android:layout_width="600px"
+        android:textColor="@color/white"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:padding="10px"
+        android:background="@drawable/fakedispositivonormal"
+        android:padding="10dp"
         android:text="In ricezione..." />
 
 

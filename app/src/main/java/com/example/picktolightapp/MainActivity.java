@@ -28,17 +28,18 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.picktolightapp.Connectivity.Server;
-import com.example.picktolightapp.Model.Dispositivo.Dispositivo;
-import com.example.picktolightapp.Model.Dispositivo.DispositivoTable;
-import com.example.picktolightapp.Model.Event.EventWriter;
-import com.example.picktolightapp.Model.Event.TipoEvento;
-import com.example.picktolightapp.Model.Global.GlobalTable;
-import com.example.picktolightapp.Model.Operation.Operation;
-import com.example.picktolightapp.Model.Operation.OperationTable;
-import com.example.picktolightapp.Model.PermissionOperationsTable;
-import com.example.picktolightapp.Model.User.CurrentUser;
-import com.example.picktolightapp.Model.User.TipoUser;
-import com.example.picktolightapp.Model.User.UserTable;
+import com.example.picktolightapp.Model_DB.Componente.Componente;
+import com.example.picktolightapp.Model_DB.Componente.ComponenteTable;
+import com.example.picktolightapp.Model_DB.Dispositivo.DispositivoTable;
+import com.example.picktolightapp.Model_DB.Event.EventWriter;
+import com.example.picktolightapp.Model_DB.Event.TipoEvento;
+import com.example.picktolightapp.Model_DB.Global.GlobalTable;
+import com.example.picktolightapp.Model_DB.Operation.Operation;
+import com.example.picktolightapp.Model_DB.Operation.OperationTable;
+import com.example.picktolightapp.Model_DB.PermissionOperations.PermissionOperationsTable;
+import com.example.picktolightapp.Model_DB.User.CurrentUser;
+import com.example.picktolightapp.Model_DB.User.TipoUser;
+import com.example.picktolightapp.Model_DB.User.UserTable;
 import com.example.picktolightapp.Toolbar.ButtonHandler;
 import com.example.picktolightapp.databinding.ActivityMainBinding;
 
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseHelper dbHelper;
     static ImageView logo;
     static LinearLayout back_button_layout;
-    private View loadingView;
+    private static View loadingView;
     static NavController navController;
 
     private Server server;
@@ -133,6 +134,13 @@ public class MainActivity extends AppCompatActivity {
         initAllPermissionsOperations();
         EventWriter eventWriter = EventWriter.getInstance(this);
 
+        /*if(Dev){
+            DispositivoTable.addDispositivo(this,new Dispositivo(0,10,5));
+            DispositivoTable.addDispositivo(this,new Dispositivo(1,80,5));
+            DispositivoTable.addDispositivo(this,new Dispositivo(2,64,4));
+            DispositivoTable.addDispositivo(this,new Dispositivo(3,74,6));
+        }*/
+
         GlobalVariables.getInstance().setCurrentDispositivi(DispositivoTable.getAllDispositivi(this));
         GlobalVariables.getInstance().setPort(GlobalTable.getPort(this));
         GlobalVariables.getInstance().setIP(GlobalTable.getIp(this));
@@ -145,6 +153,8 @@ public class MainActivity extends AppCompatActivity {
         UserTable.addUserIfNotExists(this, TipoUser.COORD,"Coord1", "coord1");
         UserTable.addUserIfNotExists(this, TipoUser.COORD,"Coord2", "coord2");
         UserTable.addUserIfNotExists(this, TipoUser.ADMIN,"Admin1", "admin1");
+
+        ComponenteTable.addComponente(this,new Componente(-1,"null","null","null"));
 
         //FORCE LOGIN
         if(Dev) {
@@ -212,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
         back_button_layout.setVisibility(View.VISIBLE);
     }
 
-    public void showLoader() {
+    public static void showLoader() {
         if (loadingView != null)
             loadingView.setVisibility(View.VISIBLE);
     }
@@ -282,6 +292,10 @@ public class MainActivity extends AppCompatActivity {
         for (Operation op : Operation.values()) {
             PermissionOperationsTable.addPermissionOperation(this,"Root",op);
         }
+        PermissionOperationsTable.addPermissionOperation(this, "Operatore", Operation.VIEW_DISP);
+        PermissionOperationsTable.addPermissionOperation(this, "Operatore", Operation.VIEW_LIVE);
+        PermissionOperationsTable.addPermissionOperation(this, "Operatore", Operation.VIEW_GENERAL_LOG);
+        PermissionOperationsTable.addPermissionOperation(this, "Operatore", Operation.VIEW_COMP);
     }
 
     public static void goToLogin(){

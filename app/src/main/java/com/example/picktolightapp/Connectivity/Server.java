@@ -2,15 +2,14 @@ package com.example.picktolightapp.Connectivity;
 
 import android.content.Context;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 
 import com.example.picktolightapp.GlobalVariables;
-import com.example.picktolightapp.Model.Dispositivo.Dispositivo;
-import com.example.picktolightapp.Model.Dispositivo.DispositivoTable;
-import com.example.picktolightapp.Model.Event.EventWriter;
-import com.example.picktolightapp.Model.Event.TipoEvento;
+import com.example.picktolightapp.Model_DB.Dispositivo.Dispositivo;
+import com.example.picktolightapp.Model_DB.Dispositivo.DispositivoTable;
+import com.example.picktolightapp.Model_DB.Event.EventWriter;
+import com.example.picktolightapp.Model_DB.Event.TipoEvento;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -49,6 +48,7 @@ public class Server {
     // Metodo per impostare l'Handler dal Fragment
     public void setMessageHandler(Handler handler) {
         this.messageHandler = handler;
+        Log.d(TAG,"Message handler setted");
     }
 
     public boolean isRunning() {

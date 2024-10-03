@@ -16,11 +16,11 @@ import androidx.navigation.Navigation;
 
 import com.example.picktolightapp.DialogsHandler;
 import com.example.picktolightapp.GlobalVariables;
-import com.example.picktolightapp.Model.Event.EventWriter;
-import com.example.picktolightapp.Model.Event.TipoEvento;
-import com.example.picktolightapp.Model.User.CurrentUser;
-import com.example.picktolightapp.Model.User.TipoUser;
-import com.example.picktolightapp.Model.User.UserTable;
+import com.example.picktolightapp.Model_DB.Event.EventWriter;
+import com.example.picktolightapp.Model_DB.Event.TipoEvento;
+import com.example.picktolightapp.Model_DB.User.CurrentUser;
+import com.example.picktolightapp.Model_DB.User.TipoUser;
+import com.example.picktolightapp.Model_DB.User.UserTable;
 import com.example.picktolightapp.R;
 import com.example.picktolightapp.Toolbar.ButtonHandler;
 

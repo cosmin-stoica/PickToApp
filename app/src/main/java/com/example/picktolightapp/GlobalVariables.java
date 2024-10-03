@@ -1,7 +1,8 @@
 package com.example.picktolightapp;
 
-import com.example.picktolightapp.Model.Dispositivo.Dispositivo;
-import com.example.picktolightapp.Model.User.User;
+import com.example.picktolightapp.Model_DB.Componente.Componente;
+import com.example.picktolightapp.Model_DB.Dispositivo.Dispositivo;
+import com.example.picktolightapp.Model_DB.User.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,15 @@ public class GlobalVariables {
 
     private String IP = "";
     private String Port = "";
+
+    private Dispositivo dispositivoToSee;
+    private Componente componenteToSee;
+
+    private boolean dispositivoNeedToCreate = false;
+    private boolean componenteNeedToCreate = false;
+
+    private boolean bSeeDispositivoLog = false;
+    private int dispositivoIDToSeeLog = -1;
 
     private GlobalVariables() {
     }
@@ -85,5 +95,53 @@ public class GlobalVariables {
 
     public void setCurrentDispositivi(List<Dispositivo> currentDispositivi) {
         this.currentDispositivi = currentDispositivi;
+    }
+
+    public void setDispositivoToSee(Dispositivo dispositivoToSee) {
+        this.dispositivoToSee = dispositivoToSee;
+    }
+
+    public Dispositivo getDispositivoToSee() {
+        return dispositivoToSee;
+    }
+
+    public boolean isDispositivoNeedToCreate() {
+        return dispositivoNeedToCreate;
+    }
+
+    public void setDispositivoNeedToCreate(boolean dispositivoNeedToCreate) {
+        this.dispositivoNeedToCreate = dispositivoNeedToCreate;
+    }
+
+    public boolean isComponenteNeedToCreate() {
+        return componenteNeedToCreate;
+    }
+
+    public void setComponenteNeedToCreate(boolean componenteNeedToCreate) {
+        this.componenteNeedToCreate = componenteNeedToCreate;
+    }
+
+    public Componente getComponenteToSee() {
+        return componenteToSee;
+    }
+
+    public void setComponenteToSee(Componente componenteToSee) {
+        this.componenteToSee = componenteToSee;
+    }
+
+    public boolean isSeeDispositivoLog() {
+        return bSeeDispositivoLog;
+    }
+
+    public void setbSeeDispositivoLog(boolean bSeeDispositivoLog) {
+        this.bSeeDispositivoLog = bSeeDispositivoLog;
+    }
+
+    public int getDispositivoIDToSeeLog() {
+        return dispositivoIDToSeeLog;
+    }
+
+    public void setDispositivoIDToSeeLog(int dispositivoIDToSeeLog) {
+        this.dispositivoIDToSeeLog = dispositivoIDToSeeLog;
     }
 }

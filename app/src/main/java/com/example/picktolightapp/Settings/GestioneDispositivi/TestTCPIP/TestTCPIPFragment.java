@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +22,8 @@ import com.example.picktolightapp.Connectivity.TcpClient;
 import com.example.picktolightapp.DialogsHandler;
 import com.example.picktolightapp.GlobalVariables;
 import com.example.picktolightapp.MainActivity;
-import com.example.picktolightapp.Model.Event.EventWriter;
-import com.example.picktolightapp.Model.Event.TipoEvento;
+import com.example.picktolightapp.Model_DB.Event.EventWriter;
+import com.example.picktolightapp.Model_DB.Event.TipoEvento;
 import com.example.picktolightapp.R;
 
 import java.util.concurrent.ExecutionException;
@@ -38,7 +37,7 @@ public class TestTCPIPFragment extends Fragment {
     }
 
     Button buttonSend,btnButtonSX,btnButtonDX;
-    EditText editTextIp, editTextPort, editTextMessage;
+    EditText editTextMessage;
     TextView textViewRicezione,dispositivoID;
     EditText editTextId;
     LinearLayout fakeDispositivo;
@@ -85,13 +84,8 @@ public class TestTCPIPFragment extends Fragment {
 
 
 
-        editTextIp = view.findViewById(R.id.editTextIp);
-        editTextPort = view.findViewById(R.id.editTextPort);
         editTextMessage = view.findViewById(R.id.editTextMessage);
         editTextId = view.findViewById(R.id.editTextId);
-
-        editTextIp.setText(GlobalVariables.getInstance().getIP());
-        editTextPort.setText(GlobalVariables.getInstance().getPort());
 
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,8 +190,9 @@ public class TestTCPIPFragment extends Fragment {
 
     void tcpSendMessage(String message, boolean wantSuccess){
 
-        String serverIp = editTextIp.getText().toString();
-        String sServeport = editTextPort.getText().toString();
+
+        String serverIp = GlobalVariables.getInstance().getIP();
+        String sServeport = GlobalVariables.getInstance().getPort();
 
         if(serverIp.isEmpty()){
             DialogsHandler.showWarningDialog(
@@ -258,6 +253,7 @@ public class TestTCPIPFragment extends Fragment {
                 }
             }
         } catch (InterruptedException | ExecutionException e) {
+            isLooping = false;
             DialogsHandler.showErrorDialog(
                     requireContext(),
                     getLayoutInflater(),
@@ -266,6 +262,7 @@ public class TestTCPIPFragment extends Fragment {
                     null
             );
         } catch (TimeoutException e) {
+            isLooping = false;
             DialogsHandler.showErrorDialog(
                     requireContext(),
                     getLayoutInflater(),

@@ -4,10 +4,12 @@ import android.app.DatePickerDialog;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -17,15 +19,22 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.picktolightapp.DialogsHandler;
+import com.example.picktolightapp.GlobalVariables;
 import com.example.picktolightapp.MainActivity;
-import com.example.picktolightapp.Model.Event.EventWriter;
-import com.example.picktolightapp.Model.Event.Evento;
-import com.example.picktolightapp.Model.Event.EventoTable;
-import com.example.picktolightapp.Model.Event.TipoEvento;
-import com.example.picktolightapp.Model.Operation.Operation;
-import com.example.picktolightapp.Model.PermissionOperationsTable;
-import com.example.picktolightapp.Model.User.CurrentUser;
+import com.example.picktolightapp.Model_DB.Dispositivo.DispositivoTable;
+import com.example.picktolightapp.Model_DB.DispositivoStorico.DispositivoStorico;
+import com.example.picktolightapp.Model_DB.DispositivoStorico.DispositivoStoricoTable;
+import com.example.picktolightapp.Model_DB.Event.EventWriter;
+import com.example.picktolightapp.Model_DB.Event.Evento;
+import com.example.picktolightapp.Model_DB.Event.EventoTable;
+import com.example.picktolightapp.Model_DB.Event.TipoEvento;
+import com.example.picktolightapp.Model_DB.Operation.Operation;
+import com.example.picktolightapp.Model_DB.PermissionOperations.PermissionOperationsTable;
+import com.example.picktolightapp.Model_DB.User.CurrentUser;
+import com.example.picktolightapp.Model_DB.User.UserTable;
 import com.example.picktolightapp.R;
+
+import org.w3c.dom.Text;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -34,9 +43,11 @@ import java.util.Locale;
 public class LogFragment extends Fragment {
 
     private TableLayout logTableLayout;
-    private Button chooseDateButton;
+    private Button chooseDateButton,visualizeLogBtn,eliminaLogBtn;
     private Calendar selectedDate;
     private Timestamp selectedTimestamp;
+    private TextView tipoColumn;
+    private int dispositivoID = -1;
 
     @Nullable
     @Override
@@ -48,14 +59,15 @@ public class LogFragment extends Fragment {
         MainActivity.setLogoInvisible();
 
         logTableLayout = view.findViewById(R.id.logTableLayout);
-        Button visualizeLogBtn = view.findViewById(R.id.visualizeLog);
+        visualizeLogBtn = view.findViewById(R.id.visualizeLog);
+        tipoColumn = view.findViewById(R.id.TipoColumn);
         Button clearLogBtn = view.findViewById(R.id.clearLog);
-        Button eliminaLogBtn = view.findViewById(R.id.eliminaLog);
+        eliminaLogBtn = view.findViewById(R.id.eliminaLog);
 
-        chooseDateButton = view.findViewById(R.id.chooseDateButton);
+
         selectedDate = Calendar.getInstance();
-        setDateToToday();
-        updateLogTable();
+        chooseDateButton = view.findViewById(R.id.chooseDateButton);
+
 
         chooseDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +79,7 @@ public class LogFragment extends Fragment {
         visualizeLogBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateLogTable();
+                updateLogTableGeneral();
             }
         });
 
@@ -102,7 +114,7 @@ public class LogFragment extends Fragment {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
                     String timestampStr = dateFormat.format(selectedTimestamp);
                     eventWriter.logEvent(TipoEvento.INFO, "Cancellato il log di " + timestampStr);
-                    updateLogTable();
+                    updateLogTableGeneral();
                 }
                 else{
                     DialogsHandler.showWarningDialog(
@@ -119,10 +131,21 @@ public class LogFragment extends Fragment {
 
         //updateLogTable();
 
+        if(!GlobalVariables.getInstance().isSeeDispositivoLog()){
+            setDateToToday();
+            updateLogTableGeneral();
+        }
+        else{
+            dispositivoID = GlobalVariables.getInstance().getDispositivoIDToSeeLog();
+            if(dispositivoID != -1)
+                updateLogTableDispositivo();
+            setToVisualizeDispositivoLog();
+        }
+
         return view;
     }
 
-    private void updateLogTable() {
+    private void updateLogTableGeneral() {
         if (logTableLayout != null) {
             logTableLayout.removeViews(1, logTableLayout.getChildCount() - 1);  // Rimuove tutte le righe tranne la prima (intestazioni)
 
@@ -252,4 +275,128 @@ public class LogFragment extends Fragment {
         }
     }
 
+    private void setToVisualizeDispositivoLog(){
+        tipoColumn.setVisibility(View.GONE);
+
+        chooseDateButton.setText("Scegli dispositivo");
+        visualizeLogBtn.setVisibility(View.GONE);
+        chooseDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPickDispositivoID();
+            }
+        });
+        eliminaLogBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!PermissionOperationsTable.userHasPermission(requireContext(), CurrentUser.getInstance(), Operation.DELETE_DISP_HISTORY,true)) {
+                    return;
+                }
+                if(dispositivoID == -1){
+                    DialogsHandler.showWarningDialog(
+                            requireContext(),
+                            getLayoutInflater(),
+                            "Warning",
+                            "Inserisci prima un'id dispositivo",
+                            null
+                    );
+                    return;
+                }
+                DispositivoStoricoTable.clearAllByID(requireContext(),dispositivoID);
+                updateLogTableDispositivo();
+            }
+        });
+    }
+
+    private void showPickDispositivoID(){
+        DialogsHandler.showChangeValueDialog(
+                requireContext(),
+                getLayoutInflater(),
+                "Scegli ID del dispositivo",
+                "Inserisci l'id del dispositivo da visualizzare",
+                InputType.TYPE_CLASS_NUMBER,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        EditText editText =  ((View) v.getParent()).findViewById(R.id.editTextInput);
+                        String newValue = editText.getText().toString().trim();
+                        dispositivoID = Integer.parseInt(newValue);
+
+                        updateLogTableDispositivo();
+                    }
+                },
+                null
+        );
+    }
+
+    private void updateLogTableDispositivo() {
+        if (logTableLayout != null) {
+            logTableLayout.removeViews(1, logTableLayout.getChildCount() - 1);  // Rimuove tutte le righe tranne la prima (intestazioni)
+
+            if(dispositivoID == -1){
+                DialogsHandler.showWarningDialog(
+                        requireContext(),
+                        getLayoutInflater(),
+                        "Warning",
+                        "Inserisci un id dispositivo",
+                        null
+                );
+                return;
+            }
+            if(DispositivoTable.getDispositivoById(requireContext(),dispositivoID) == null){
+                DialogsHandler.showWarningDialog(
+                        requireContext(),
+                        getLayoutInflater(),
+                        "Warning",
+                        "Il dispositivo non esiste",
+                        null
+                );
+                return;
+            }
+
+
+            List<DispositivoStorico> eventi = DispositivoStoricoTable.getAllStorici(requireContext());
+            if(eventi == null || eventi.isEmpty()){
+                DialogsHandler.showWarningDialog(
+                        requireContext(),
+                        getLayoutInflater(),
+                        "Warning",
+                        "Il dispositivo selezionato non contiene nessun evento",
+                        null
+                );
+                return;
+            }
+
+            boolean isFirstRow = true;  // Variabile per tracciare la prima riga
+
+            for (DispositivoStorico dispositivoStorico : eventi) {
+                TableRow row = new TableRow(requireContext());
+
+                TextView timestampView = new TextView(requireContext());
+                timestampView.setText(dispositivoStorico.getTimestamp());
+                timestampView.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f));
+
+                TextView descrizioneView = new TextView(requireContext());
+                descrizioneView.setText(dispositivoStorico.getOperation());
+                descrizioneView.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 5f));
+
+                row.addView(timestampView);
+                row.addView(descrizioneView);
+
+
+                // Aggiungi una View per il bordo nero sotto la prima riga
+                if (isFirstRow) {
+                    View borderView = new View(requireContext());
+                    borderView.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, 2));
+                    borderView.setBackgroundColor(getResources().getColor(android.R.color.black));
+                    logTableLayout.addView(borderView);
+
+                    isFirstRow = false;
+                }
+
+                logTableLayout.addView(row);
+
+            }
+        }
+    }
 }

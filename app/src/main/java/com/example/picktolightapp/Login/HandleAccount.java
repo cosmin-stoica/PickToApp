@@ -4,9 +4,8 @@ import android.content.Context;
 
 import com.example.picktolightapp.GlobalVariables;
 import com.example.picktolightapp.MainActivity;
-import com.example.picktolightapp.Model.User.CurrentUser;
-import com.example.picktolightapp.Model.User.TipoUser;
-import com.example.picktolightapp.Model.User.User;
+import com.example.picktolightapp.Model_DB.User.CurrentUser;
+import com.example.picktolightapp.Model_DB.User.TipoUser;
 import com.example.picktolightapp.R;
 
 public class HandleAccount {

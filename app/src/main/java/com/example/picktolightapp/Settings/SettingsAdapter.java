@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,11 +19,10 @@ import androidx.annotation.Nullable;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import com.example.picktolightapp.DialogsHandler;
 import com.example.picktolightapp.GlobalVariables;
-import com.example.picktolightapp.Model.Operation.Operation;
-import com.example.picktolightapp.Model.PermissionOperationsTable;
-import com.example.picktolightapp.Model.User.CurrentUser;
+import com.example.picktolightapp.Model_DB.Operation.Operation;
+import com.example.picktolightapp.Model_DB.PermissionOperations.PermissionOperationsTable;
+import com.example.picktolightapp.Model_DB.User.CurrentUser;
 import com.example.picktolightapp.R;
 
 public class SettingsAdapter extends ArrayAdapter<String> {
@@ -118,12 +116,22 @@ public class SettingsAdapter extends ArrayAdapter<String> {
     NavController navController = Navigation.findNavController(view);
     GlobalVariables.getInstance().setLastDestinationId(R.id.settingsFragment);
         switch (option) {
-            case "Visualizza Log":
+            case "Visualizza Log Generale":
 
-                if(!PermissionOperationsTable.userHasPermission(context, CurrentUser.getInstance(), Operation.VIEW_LOG,true)){
+                if(!PermissionOperationsTable.userHasPermission(context, CurrentUser.getInstance(), Operation.VIEW_GENERAL_LOG,true)){
                     return;
                 }
 
+                navController.navigate(R.id.action_settingsFragment_to_logFragment);
+                break;
+            case "Visualizza Log Dispositivi":
+
+                if(!PermissionOperationsTable.userHasPermission(context, CurrentUser.getInstance(), Operation.SEE_DISP_HISTORY,true)){
+                    return;
+                }
+
+                GlobalVariables.getInstance().setbSeeDispositivoLog(true);
+                GlobalVariables.getInstance().setDispositivoIDToSeeLog(-1);
                 navController.navigate(R.id.action_settingsFragment_to_logFragment);
                 break;
             case "Gestione utenti":

@@ -29,6 +29,24 @@
         android:id="@+id/action_to_DispositiviHomeFragment"
         app:destination="@id/DispositiviHomeFragment" />
 
+    <action
+        android:id="@+id/action_to_ComponenteHomeFragment"
+        app:destination="@id/ComponenteHomeFragment" />
+
+
+    <action
+        android:id="@+id/action_to_LiveFragment"
+        app:destination="@id/LiveFragment" />
+
+    <action
+        android:id="@+id/action_to_LiveVisualizeFragment"
+        app:destination="@id/LiveVisualizeFragment" />
+
+
+    <action
+        android:id="@+id/action_to_LogFragment"
+        app:destination="@id/logFragment" />
+
 
     <fragment
         android:id="@+id/loginFragment"
@@ -44,7 +62,14 @@
         android:id="@+id/homepageFragment"
         android:name="com.example.picktolightapp.Homepage.HomepageFragment"
         android:label="Homepage"
-        tools:layout="@layout/homepage" />
+        tools:layout="@layout/homepage">
+        <action
+            android:id="@+id/action_HomepageFragment_to_LavorazioneFragment"
+            app:destination="@id/LavorazioneFragment" />
+        <action
+            android:id="@+id/action_HomepageFragment_to_RicetteFragment"
+            app:destination="@id/RicetteFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/settingsFragment"
@@ -119,6 +144,58 @@
         android:name="com.example.picktolightapp.DispositiviHome.DispositivoVisualizeFragment"
         android:label="Dispositivo Visualize Fragment"
         tools:layout="@layout/dispositivo_visualize" />
+
+    <fragment
+        android:id="@+id/ComponenteHomeFragment"
+        android:name="com.example.picktolightapp.ComponenteHome.ComponenteHomeFragment"
+        android:label="Componente Home Fragment"
+        tools:layout="@layout/componente_home">
+        <action
+            android:id="@+id/action_ComponenteHomeFragment_to_CaricaImmaginiFragment"
+            app:destination="@id/CaricaImmaginiFragment" />
+        <action
+            android:id="@+id/action_ComponenteHomeFragment_to_CreaComponenteFragment"
+            app:destination="@id/CreaComponenteFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/CaricaImmaginiFragment"
+        android:name="com.example.picktolightapp.ComponenteHome.CaricaImmaginiFragment"
+        android:label="Carica Immagini Fragment"
+        tools:layout="@layout/carica_immagini" />
+
+
+    <fragment
+        android:id="@+id/CreaComponenteFragment"
+        android:name="com.example.picktolightapp.ComponenteHome.CreaComponenteFragment"
+        android:label="Crea Componente Fragment"
+        tools:layout="@layout/componente_visualize" />
+
+    <fragment
+        android:id="@+id/LiveFragment"
+        android:name="com.example.picktolightapp.Live.LiveFragment"
+        android:label="Live Fragment"
+        tools:layout="@layout/live_home" />
+
+    <fragment
+        android:id="@+id/LiveVisualizeFragment"
+        android:name="com.example.picktolightapp.Live.LiveVisualizeFragment"
+        android:label="Live Visualize Fragment"
+        tools:layout="@layout/dispositivo_live_visualize" />
+
+
+    <fragment
+        android:id="@+id/LavorazioneFragment"
+        android:name="com.example.picktolightapp.Lavorazione.LavorazioneFragment"
+        android:label="Lavorazione Fragment"
+        tools:layout="@layout/lavorazione" />
+
+    <fragment
+        android:id="@+id/RicetteFragment"
+        android:name="com.example.picktolightapp.Ricette.RicetteHomeFragment"
+        android:label="Ricette Fragment"
+        tools:layout="@layout/ricette_home" />
+
 
 
 </navigation>

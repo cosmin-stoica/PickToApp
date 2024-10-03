@@ -5,65 +5,90 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgrounddark">
 
+    <!-- TextView per il titolo dell'indirizzo IP del dispositivo -->
     <TextView
         android:id="@+id/currentIP"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
-        android:layout_marginEnd="16dp"
-        android:text="Indirizzo IP del dispositivo:"
-        android:paddingTop="70dp"
-        android:textSize="17dp"
-        android:textColor="@color/white"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:gravity="bottom"
+        android:padding="5dp"
+        android:layout_marginTop="-45dp"
         android:singleLine="true"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textAlignment="center"
+        android:text="Indirizzo IP del dispositivo:"
+        android:textColor="@color/white"
+        android:textSize="17dp"
+        android:background="@drawable/fakedispositivonormal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- EditText per inserire l'indirizzo IP -->
-    <EditText
-        android:id="@+id/editTextIP"
+    <!-- TextInputLayout per l'indirizzo IP del server -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_ip_server"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="Inserisci IP"
-        android:inputType="text"
-        android:layout_marginTop="100dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:hint="Indirizzo IP del Server"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/white"
+        app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/currentIP"
+        app:hintTextColor="@color/white"> <!-- Imposta il colore dell'hint a bianco -->
 
-    <!-- EditText per inserire la porta -->
-    <EditText
-        android:id="@+id/editTextPort"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextIP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <!-- TextInputLayout per la porta del server -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_port_server"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="Inserisci Porta"
-        android:inputType="number"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/editTextIP"
-        app:layout_constraintStart_toStartOf="parent"
+        android:hint="Porta del Server"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/white"
+        app:hintTextColor="@color/white"
+        app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_input_layout_ip_server">
 
-    <!-- Bottone per cambiare i parametri -->
-    <Button
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextPort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonChangeParams"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/white_button"
         android:text="Cambia parametri"
-        app:layout_constraintTop_toBottomOf="@id/editTextPort"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textAllCaps="false"
+        android:textColor="@color/indietro_color"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        app:layout_constraintHorizontal_bias="0.5" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_input_layout_port_server" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
